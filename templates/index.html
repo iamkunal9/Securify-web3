@@ -18,11 +18,27 @@
     flex-direction: column;
     align-content: center;
 }
+.searchbox{
+  width:500px;
+  height:40px;
+  border-radius: 45px;
+  background-color: #101010;
+  border-color: rgb(255, 151, 169);
+  padding-left: 12px;
+}
 .box{
-    position: relative;
+    flex-direction: column;
+    padding-top: 40px;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    background: black;
+    border-radius: 10px;
 }
 
-.input {
+#input {
     padding: 10px;
     width: 80px;
     height: 80px;
@@ -34,40 +50,243 @@
     font-size: 26px;
     color: blue;
     outline: none;
-    transition: .5s;
+    /* transition: .5s; */
 }
-.search-history{
-    color:white;
-    padding-top: 10px;
-}
-.box:hover input{
-    width: 350px;
-    background: black;
-    border-radius: 10px;
-}
+
+
+
+
+
 .box i {
+
+    display: flex;
     position: absolute;
-    top: 43%;
-    right: 15px;
-    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;  
     font-size: 26px;
     color: blue;
     transition: .2s;
+    
+}
+.search-history{
+    display: flex;
+    position:relative;
+    justify-content: center;
+    align-items: center;
+    color: blue;
+    font-size: 26px;
+    
 }
 
-.box:hover i {
-    opacity: 0;  /* Change to 0 to hide the icon */
-    z-index: -1;
+* {
+  margin: 0;
+  padding: 0;
 }
+#formm{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media only screen and (max-width: 600px) {
+    #formm {
+width: 20px;
+  }
+}
+body {
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background: #000;
+  overflow: hidden;
+}
+input{
+    color:white;
+}
+.icon{
+  position: relative;
+
+  width: 34px;
+  right: 38px;
+}
+.glowing {
+    z-index: -99999;
+  position: relative;
+  min-width: 700px;
+  height: 550px;
+  margin: -150px;
+  transform-origin: right;
+  animation: colorChange 5s linear infinite;
+}
+
+.glowing:nth-child(even) {
+  transform-origin: left;
+}
+
+@keyframes colorChange {
+  0% {
+    filter: hue-rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.glowing span {
+  position: absolute;
+  top: calc(80px * var(--i));
+  left: calc(80px * var(--i));
+  bottom: calc(80px * var(--i));
+  right: calc(80px * var(--i));
+}
+
+.glowing span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  width: 15px;
+  height: 15px;
+  background: #f00;
+  border-radius: 50%;
+}
+
+.glowing span:nth-child(3n + 1)::before {
+  background: blue;
+  box-shadow: 0 0 20px blue,
+    0 0 40px blue,
+    0 0 60px blue,
+    0 0 80px blue,
+    0 0 0 8px rgba(134,255,0,.1);
+}
+
+.glowing span:nth-child(3n + 2)::before {
+  background: blue;
+  box-shadow: 0 0 20px blue,
+    0 0 40px blue,
+    0 0 60px blue,
+    0 0 80px blue,
+    0 0 0 8px rgba(255,214,0,.1);
+}
+
+.glowing span:nth-child(3n + 3)::before {
+  background: rgba(0,226,255,1);
+  box-shadow: 0 0 20px rgba(0,226,255,1),
+    0 0 40px rgba(0,226,255,1),
+    0 0 60px rgba(0,226,255,1),
+    0 0 80px rgba(0,226,255,1),
+    0 0 0 8px rgba(0,226,255,.1);
+}
+
+.glowing span:nth-child(3n + 1) {
+  animation: animate 10s alternate infinite;
+}
+
+.glowing span:nth-child(3n + 2) {
+  animation: animate-reverse 3s alternate infinite;
+}
+
+.glowing span:nth-child(3n + 3) {
+  animation: animate 8s alternate infinite; 
+}
+@font-face {
+  font-family: exwayer;
+  src: url(https://cdn.jsdelivr.net/gh/iamkunal9/securify@main/public/exwayer.ttf);
+}
+h1{
+  font-family: 'exwayer';
+  font-size: 3rem;
+  color: white;
+  padding-bottom: 10px;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(180deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-reverse {
+  0% {
+    transform: rotate(360deg);
+  }
+  
+  50% {
+    transform: rotate(180deg);
+  }
+  
+  100% {
+    transform: rotate(0deg);
+  }
+}
+.fas{
+    padding-bottom: 20px;
+}
+
 </style>
 <body>
+    
     <div class="box">
-        <form name="search" action="/" method="POST">
-            <input type="text" name="address" class="input" name="txt" onmouseout="this.value = ''; this.blur();">
+        <h1>Securify web3</h1>
+        <form name="search" id="formm" action="/" method="POST">
+            <input type="text" name="address" class="searchbox">
+            <img class="icon" src="https://i.postimg.cc/NG5CFrdK/image.png"/>
         </form>
-        <i class="fas fa-search"></i>
-        <div class="search-history" id="searchHistory">{{ resp }}</div>
+        <div class="search-history" id="searchHistory"> {{ resp }}</div>
+    </div>
+</body>
+
+<body>
+    <div class="glowing">
+      
+      <span style="--i:1;"></span>
+      
+      <span style="--i:2;"></span>
+      
+      <span style="--i:3;"></span>
+      
     </div>
     
+    <div class="glowing">
+      
+      <span style="--i:1;"></span>
+      
+      <span style="--i:2;"></span>
+      
+      <span style="--i:3;"></span>
+      
+    </div>
+    
+    <div class="glowing">
+      
+      <span style="--i:1;"></span>
+      
+      <span style="--i:2;"></span>
+      
+      <span style="--i:3;"></span>
+      
+    </div>
+    
+    <div class="glowing">
+      
+      <span style="--i:1;"></span>
+      
+      <span style="--i:2;"></span>
+      
+      <span style="--i:3;"></span>
+      
+    </div>
+    
+  
+     
 </body>
 </html>

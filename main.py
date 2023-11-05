@@ -4,7 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import ShuffleSplit
 from sklearn.model_selection import GridSearchCV
 import pickle
-from helper import bytecode
+from bytecode import getByteCode
 from flask import Flask, render_template, request
 
 
